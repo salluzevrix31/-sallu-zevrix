@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SALLU ZEVRIX | NAME YAAD RAKHNA</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #050510;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+.container {
+  width: 92%;
+  max-width: 800px;
+  padding: 30px 10px;
+}
+.tag {
+  color: #00f7ff;
+  letter-spacing: 5px;
+  font-size: 13px;
+}
+h1 {
+  font-size: clamp(32px, 8vw, 65px);
+  color: white;
+  text-shadow: 0 0 12px #00eaff, 0 0 35px #8500ff;
+  margin: 25px 0 10px;
+}
+.subtitle {
+  color: #bd9aff;
+  letter-spacing: 4px;
+  margin-bottom: 35px;
+}
+.release {
+  color: #aaa;
+  margin-bottom: 25px;
+}
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.box {
+  padding: 20px 5px;
+  background: #11112b;
+  border: 1px solid #00eaff;
+  border-radius: 14px;
+  box-shadow: 0 0 15px #00eaff55;
+}
+.number {
+  color: #00f7ff;
+  font-size: clamp(25px, 6vw, 48px);
+  font-weight: bold;
+  text-shadow: 0 0 12px #00eaff;
+}
+.label {
+  margin-top: 10px;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+.message {
+  margin-top: 35px;
+  color: #00f7ff;
+  letter-spacing: 3px;
+}
+button {
+  margin-top: 25px;
+  padding: 14px 25px;
+  border: 1px solid #00eaff;
+  border-radius: 30px;
+  background: transparent;
+  color: white;
+  font-size: 15px;
+  box-shadow: 0 0 15px #00eaff55;
+}
+button:disabled {
+  opacity: 0.5;
+}
+footer {
+  color: #888;
+  margin-top: 45px;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+@media(max-width:450px) {
+  .countdown { grid-template-columns: repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="tag">✦ OFFICIAL MUSIC RELEASE ✦</div>
+
+  <h1>SALLU ZEVRIX</h1>
+
+  <div class="subtitle">NAME YAAD RAKHNA</div>
+
+  <div class="release">
+    NEW SONG RELEASE • 29 MAY 2027
+  </div>
+
+  <div class="countdown" id="countdown">
+    <div class="box">
+      <div class="number" id="days">00</div>
+      <div class="label">DAYS</div>
+    </div>
+    <div class="box">
+      <div class="number" id="hours">00</div>
+      <div class="label">HOURS</div>
+    </div>
+    <div class="box">
+      <div class="number" id="minutes">00</div>
+      <div class="label">MINUTES</div>
+    </div>
+    <div class="box">
+      <div class="number" id="seconds">00</div>
+      <div class="label">SECONDS</div>
+    </div>
+  </div>
+
+  <div class="message" id="message">
+    SOMETHING BIG IS COMING 🔥
+  </div>
+
+  <button id="listen" disabled>
+    ▶ LISTEN NOW
+  </button>
+
+  <footer>
+    SALLU ZEVRIX © 2027
+  </footer>
+</div>
+
+<script>
+// Release time: 29 May 2027, 12:00 PM IST
+const releaseDate =
+  new Date("2027-05-29T12:00:00+05:30").getTime();
+
+// Add your YouTube link here after uploading
+const youtubeLink = "";
+
+function updateCountdown() {
+  const now = Date.now();
+  const diff = releaseDate - now;
+
+  if (diff <= 0) {
+    document.getElementById("countdown").innerHTML =
+      "<h2>🔥 THE SONG IS OUT NOW! 🔥</h2>";
+
+    document.getElementById("message").innerText =
+      "NAME YAAD RAKHNA!";
+
+    const button = document.getElementById("listen");
+    button.disabled = false;
+    button.onclick = () => {
+      if (youtubeLink) {
+        window.open(youtubeLink, "_blank");
+      } else {
+        alert("YouTube link will be added soon!");
+      }
+    };
+    return;
+  }
+
+  document.getElementById("days").innerText =
+    Math.floor(diff / 86400000);
+
+  document.getElementById("hours").innerText =
+    Math.floor(diff / 3600000) % 24;
+
+  document.getElementById("minutes").innerText =
+    Math.floor(diff / 60000) % 60;
+
+  document.getElementById("seconds").innerText =
+    Math.floor(diff / 1000) % 60;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
